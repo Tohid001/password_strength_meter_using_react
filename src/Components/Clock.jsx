@@ -3,6 +3,9 @@ import React, { Component } from "react";
 class Clock extends Component {
   state = { date: new Date() };
   componentDidMount() {
+    this.tick();
+  }
+  tick() {
     setInterval(() => {
       this.setState({ date: new Date() });
     }, 1000);
