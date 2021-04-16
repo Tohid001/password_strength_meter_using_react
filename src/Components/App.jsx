@@ -1,12 +1,8 @@
-import React from "react";
-import Profile from "./Profiles/index";
-class App extends React.Component {
+import React, { Component } from "react";
+import Clock from "./Clock";
+class App extends Component {
   render() {
-    return (
-      <div class="container">
-        <Profile />
-      </div>
-    );
+    return <Clock local="bn-BD" />;
   }
 }
 export default App;
