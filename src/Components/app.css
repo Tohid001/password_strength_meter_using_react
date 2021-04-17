@@ -1,0 +1,48 @@
+html {
+  /* font-size: 10px; */
+  height: 100vh;
+  background: url("https://image.freepik.com/free-vector/abstract-orange-watercolor-brush-stroke_1035-19511.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  height: 100%;
+}
+h1 {
+  letter-spacing: 0.5em;
+  background-color: rgba(0, 0, 0, 0.347);
+  color: snow;
+  text-align: center;
+}
+.button {
+  width: 50%;
+  margin: auto;
+}
+.container {
+  width: 50%;
+  margin: auto;
+}
+.btn {
+  border: 0.4rem solid black;
+  border-radius: 0.5rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+  padding: 1rem 0.5rem;
+  transition: all 0.07s ease;
+  /* width: 10rem; */
+  text-align: center;
+  letter-spacing: 0.5em;
+  color: white;
+  background: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 0.5rem black;
+}
+/* #root {
+  display: flex;
+  flex: 1;
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+} */

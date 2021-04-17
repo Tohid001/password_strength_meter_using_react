@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 class Timer extends Component {
   state = { minute: 0, seconds: 0 };
+  intervalId = null;
   incrementSec = () => {
     if (!this.intervalId) {
       this.setState((prev) => {
@@ -12,6 +13,31 @@ class Timer extends Component {
       });
     }
   };
+  forward = () => {
+    if (!this.intervalId) {
+      this.intervalId = setInterval(() => {
+        this.setState((prev) => {
+          if (prev.seconds === 59) {
+            return { minute: this.state.minute + 1, seconds: 0 };
+          }
+          return { seconds: prev.seconds + 1 };
+        });
+      }, 1000);
+    }
+  };
+  stop = () => {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+      this.intervalId = null;
+    }
+  };
+  reset = () => {
+    this.stop();
+    this.setState((prev) => {
+      return { minute: 0, seconds: 0 };
+    });
+  };
+
   decrementSec = () => {
     if (!this.intervalId) {
       if (this.state.seconds > 0 || this.state.minute > 0) {
@@ -26,8 +52,8 @@ class Timer extends Component {
       }
     }
   };
-  intervalId = null;
-  start = () => {
+
+  backward = () => {
     if (!this.intervalId)
       this.intervalId = setInterval(() => {
         if (this.state.seconds > 0 || this.state.minute > 0) {
@@ -50,33 +76,27 @@ class Timer extends Component {
         }
       }, 1000);
   };
-  stop = () => {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-    }
-  };
-  reset = () => {
-    this.stop();
-    this.setState((prev) => {
-      return { minute: 0, seconds: 0 };
-    });
-  };
+
   render() {
     return (
-      <div>
+      <>
         <div className="container">
           <h1>{`${this.state.minute}m:${this.state.seconds}s`}</h1>
-          <button onClick={this.incrementSec} className="btn">
-            +
-          </button>
-          <button onClick={this.decrementSec} className="btn">
-            -
-          </button>
+          <div className="button">
+            <button onClick={this.incrementSec} className="btn">
+              +
+            </button>
+            <button onClick={this.decrementSec} className="btn">
+              -
+            </button>
+          </div>
         </div>
         <div className="container2">
-          <button className="btn" onClick={this.start}>
-            Start
+          <button className="btn" onClick={this.backward}>
+            Backward Timer!
+          </button>
+          <button className="btn" onClick={this.forward}>
+            Forward Timer!
           </button>
           <button className="btn" onClick={this.stop}>
             Stop
@@ -85,7 +105,7 @@ class Timer extends Component {
             Reset
           </button>
         </div>
-      </div>
+      </>
     );
   }
 }
