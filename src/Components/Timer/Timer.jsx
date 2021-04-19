@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-
+let x = false;
+let y = false;
 class Timer extends Component {
   state = { minute: 0, seconds: 0 };
-  intervalId = null;
+  forwardIntervalId = null;
+  backwardIntervalId = null;
   incrementSec = () => {
-    if (!this.intervalId) {
+    if (!this.forwardIntervalId && !this.backwardIntervalId) {
       this.setState((prev) => {
         if (prev.seconds === 59) {
           return { minute: this.state.minute + 1, seconds: 0 };
@@ -14,8 +16,8 @@ class Timer extends Component {
     }
   };
   forward = () => {
-    if (!this.intervalId) {
-      this.intervalId = setInterval(() => {
+    if (!this.forwardIntervalId && !this.backwardIntervalId) {
+      this.forwardIntervalId = setInterval(() => {
         this.setState((prev) => {
           if (prev.seconds === 59) {
             return { minute: this.state.minute + 1, seconds: 0 };
@@ -26,20 +28,67 @@ class Timer extends Component {
     }
   };
   stop = () => {
-    if (this.intervalId) {
-      clearInterval(this.intervalId);
-      this.intervalId = null;
+    if (this.forwardIntervalId) {
+      clearInterval(this.forwardIntervalId);
+      x = true;
+      // this.forwardIntervalId = null;
+    } else if (this.backwardIntervalId) {
+      clearInterval(this.backwardIntervalId);
+      y = true;
+      // this.backwardIntervalId = null;
+    }
+  };
+  resume = () => {
+    if (x || y) {
+      if (this.forwardIntervalId) {
+        this.forwardIntervalId = null;
+        this.forwardIntervalId = setInterval(() => {
+          this.setState((prev) => {
+            if (prev.seconds === 59) {
+              return { minute: this.state.minute + 1, seconds: 0 };
+            }
+            return { seconds: prev.seconds + 1 };
+          });
+        }, 1000);
+      } else if (this.backwardIntervalId) {
+        this.backwardIntervalId = null;
+        this.backwardIntervalId = setInterval(() => {
+          if (this.state.seconds > 0 || this.state.minute > 0) {
+            this.setState(
+              (prev) => {
+                if (prev.seconds === 1 && this.state.minute > 0) {
+                  return { seconds: 0 };
+                } else if (prev.seconds === 0 && prev.minute > 0) {
+                  return { minute: prev.minute - 1, seconds: 59 };
+                }
+                return { seconds: prev.seconds - 1 };
+              },
+              () => {
+                if (this.state.minute === 0 && this.state.seconds === 0) {
+                  clearInterval(this.backwardIntervalId);
+                  this.backwardIntervalId = null;
+                }
+              }
+            );
+          }
+        }, 1000);
+      }
     }
   };
   reset = () => {
     this.stop();
+    if (this.forwardIntervalId) {
+      this.forwardIntervalId = null;
+    } else if (this.backwardIntervalId) {
+      this.backwardIntervalId = null;
+    }
     this.setState((prev) => {
       return { minute: 0, seconds: 0 };
     });
   };
 
   decrementSec = () => {
-    if (!this.intervalId) {
+    if (!this.forwardIntervalId && !this.backwardIntervalId) {
       if (this.state.seconds > 0 || this.state.minute > 0) {
         this.setState((prev) => {
           if (prev.seconds === 1 && this.state.minute > 0) {
@@ -54,8 +103,8 @@ class Timer extends Component {
   };
 
   backward = () => {
-    if (!this.intervalId)
-      this.intervalId = setInterval(() => {
+    if (!this.forwardIntervalId && !this.backwardIntervalId)
+      this.backwardIntervalId = setInterval(() => {
         if (this.state.seconds > 0 || this.state.minute > 0) {
           this.setState(
             (prev) => {
@@ -68,8 +117,8 @@ class Timer extends Component {
             },
             () => {
               if (this.state.minute === 0 && this.state.seconds === 0) {
-                clearInterval(this.intervalId);
-                this.intervalId = null;
+                clearInterval(this.backwardIntervalId);
+                this.backwardIntervalId = null;
               }
             }
           );
@@ -100,6 +149,9 @@ class Timer extends Component {
           </button>
           <button className="btn" onClick={this.stop}>
             Stop
+          </button>
+          <button className="btn" onClick={this.resume}>
+            Resume
           </button>
           <button className="btn" onClick={this.reset}>
             Reset
