@@ -19,17 +19,9 @@ class Clock extends Component {
       <>
         <h1>{this.state.date.toLocaleTimeString(this.state.local)}</h1>
         {this.state.local === "en-US" ? (
-          <Toggle
-            format={this.changeFormat}
-            local="bn-BD"
-            text="Click here to change the format"
-          />
+          <Toggle format={this.changeFormat} local="bn-BD" />
         ) : (
-          <Toggle
-            format={this.changeFormat}
-            local="en-US"
-            text="go back to default"
-          />
+          <Toggle format={this.changeFormat} local="en-US" />
         )}
       </>
     );
