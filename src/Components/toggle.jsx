@@ -8,6 +8,7 @@ class Toggle extends Component {
           ? "Click here to change the format"
           : "go back to default"}
       </button>
+      {this.props.show && <h1>go back to the original format you asshole!</h1>}
     );
   }
 }
