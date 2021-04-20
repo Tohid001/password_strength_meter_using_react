@@ -21,7 +21,7 @@ class Clock extends Component {
         {this.state.local === "en-US" ? (
           <Toggle format={this.changeFormat} local="bn-BD" show={false} />
         ) : (
-          <Toggle format={this.changeFormat} local="en-US" show={true} />
+          <Toggle format={this.changeFormat} local="en-US" show />
         )}
       </>
     );
