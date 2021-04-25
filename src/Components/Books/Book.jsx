@@ -5,19 +5,15 @@ export default class Book extends Component {
   render() {
     const { book, handleState } = this.props;
     return (
-      <li className="list-group-item d-flex flex-sm-column flex-lg-row">
-        {this.state.isEditable ? (
-          <input
-            className="form-control"
-            type="text"
-            name=""
-            value={book.name}
-            style={{ width: "auto" }}
-          />
-        ) : (
-          <p>{book.name}</p>
-        )}
-        <span className="ml-lg-auto text-sm-center text-lg-left">
+      <li className="list-group-item d-flex flex-column flex-lg-row">
+        <blockquote class="blockquote">
+          <p class="mb-0">{book.name}</p>
+          <footer class="blockquote-footer">
+            <cite title="Source Title">Written by {book.author}</cite>
+          </footer>
+        </blockquote>
+
+        <span className="ml-lg-auto text-center text-lg-left">
           {book.price}
         </span>
         <div className="d-flex ml-lg-4">
@@ -29,13 +25,13 @@ export default class Book extends Component {
             <i class="fas fa-trash"></i>
           </span>
           <span
-            className="ml-sm-auto ml-lg-auto"
+            className="ml-auto ml-lg-auto"
             style={{ cursor: "pointer" }}
             onClick={() => {
               this.setState({ isEditable: true });
             }}
           >
-            <i class="fas fa-edit"></i>
+            <small>{`(${book.quantity} items are available)`}</small>
           </span>
         </div>
       </li>

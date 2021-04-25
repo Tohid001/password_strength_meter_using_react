@@ -3,9 +3,27 @@ import Books from "./Books/Books";
 export default class App extends Component {
   state = {
     books: [
-      { name: "Manufacturig Engg.", author: "Mr. X", price: "100$", id: 1 },
-      { name: "Operations Management", author: "Mr. Y", price: "150$", id: 2 },
-      { name: "Differential Calculus", author: "Mr. Z", price: "200$", id: 3 },
+      {
+        name: "Manufacturig Engg.",
+        author: "Mr. X",
+        price: "100$",
+        quantity: 10,
+        id: 1,
+      },
+      {
+        name: "Operations Management",
+        author: "Mr. Y",
+        price: "150$",
+        quantity: 15,
+        id: 2,
+      },
+      {
+        name: "Differential Calculus",
+        author: "Mr. Z",
+        price: "200$",
+        quantity: 20,
+        id: 3,
+      },
     ],
   };
   handleState = (id) => {
