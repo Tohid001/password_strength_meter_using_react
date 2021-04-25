@@ -16,12 +16,10 @@ export default class App extends Component {
   };
   render() {
     return (
-      <div className="container">
-        <Books
-          books={this.state.books}
-          handleState={this.handleState.bind(this)}
-        />
-      </div>
+      <Books
+        books={this.state.books}
+        handleState={this.handleState.bind(this)}
+      />
     );
   }
 }
