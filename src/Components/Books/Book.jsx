@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 export default class Book extends Component {
-  state = { isEditable: false };
+  state = {};
   render() {
     const { book, handleState } = this.props;
     return (
@@ -24,13 +24,7 @@ export default class Book extends Component {
           >
             <i class="fas fa-trash"></i>
           </span>
-          <span
-            className="ml-auto ml-lg-auto"
-            style={{ cursor: "pointer" }}
-            onClick={() => {
-              this.setState({ isEditable: true });
-            }}
-          >
+          <span className="ml-auto ml-lg-auto">
             <small>{`(${book.quantity} items are available)`}</small>
           </span>
         </div>
