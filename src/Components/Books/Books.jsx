@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import Book from "./Book";
 
 export default class Books extends Component {
-  state = { isSearched: false, selectVAlue: "Chose books..." };
+  state = {
+    // isButtonClicked: false,
+    selectVAlue: "Chose books...",
+    selectedItem: "",
+  };
   render() {
-    const { books, handleState, handleSearch } = this.props;
-    const { isSearched, selectVAlue } = this.state;
+    const { books, handleState, handleClick } = this.props;
+    const { selectVAlue, selectedItem } = this.state;
     return (
       <div className="container" style={{ padding: "0" }}>
         <div className="card" style={{ width: "60%", margin: "auto" }}>
@@ -20,9 +24,6 @@ export default class Books extends Component {
           ></img>
 
           <div className="card-body">
-            {/* <h5 className="card-title" className=" text-center">
-              Booklist
-            </h5> */}
             <div className="d-flex justify-content-center mb-3">
               <nav className="navbar p-0 navbar-light bg-light">
                 <select
@@ -30,15 +31,27 @@ export default class Books extends Component {
                   style={{ width: "auto" }}
                   value={selectVAlue}
                   onChange={(event) => {
-                    this.setState({ selectVAlue: event.target.value });
+                    this.setState({
+                      selectVAlue: event.target.value,
+                      selectedItem: event.target.value,
+                    });
                   }}
                 >
                   <option>Chose books...</option>
-                  {books.map((book) => {
-                    return <option>{book.name}</option>;
-                  })}
+                  <option>Manufacturig Engg.</option>
+                  <option>Operations Management</option>
+                  <option>Differential Calculus</option>
                 </select>
-                <button className="btn btn-outline-success my-2 my-sm-0">
+                <button
+                  className="btn btn-outline-success my-2 my-sm-0"
+                  onClick={() => {
+                    handleClick(selectedItem);
+                    this.setState({
+                      selectVAlue: "Chose books...",
+                      selectedItem: "",
+                    });
+                  }}
+                >
                   Add to list
                 </button>
               </nav>
@@ -49,7 +62,7 @@ export default class Books extends Component {
             >
               <span>{} added</span>
             </li>
-            {books.map((book) => {
+            {Books.map((book) => {
               return <Book book={book} handleState={handleState} />;
             })}
           </div>
@@ -59,10 +72,20 @@ export default class Books extends Component {
   }
 }
 
-// <input
-// className="form-control d-inline-block mr-sm-2"
-// style={{ width: "auto" }}
-// type="search"
-// placeholder="Select your books"
-// aria-label="Search"
-// />
+// {!isButtonClicked ? (
+//   <li className="list-group-item d-flex justify-content-center">
+//     <span>0 items added</span>
+//   </li>
+// ) : (
+//   books.map((book) => {
+//     if (book.name === selectedItem) {
+//       return (
+//         <Book
+//           book={book}
+//           handleState={handleState}
+//           isButtonClicked={isButtonClicked}
+//         />
+//       );
+//     }
+//   })
+// )}

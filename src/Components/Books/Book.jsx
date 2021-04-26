@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class Book extends Component {
   state = {};
   render() {
-    const { book, handleState } = this.props;
+    const { book, handleState, isButtonClicked } = this.props;
     return (
       <li className="list-group-item d-flex flex-column flex-lg-row">
         <blockquote class="blockquote">

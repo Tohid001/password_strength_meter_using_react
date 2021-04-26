@@ -32,11 +32,18 @@ export default class App extends Component {
     });
     this.setState({ books: newBooks });
   };
+  handleClick = (name) => {
+    let nBooks = this.state.books.filter((book) => {
+      return book.name === name;
+    });
+    this.setState({ books: [...this.state.books, ...nBooks] });
+  };
   render() {
     return (
       <Books
         books={this.state.books}
         handleState={this.handleState.bind(this)}
+        handleClick={this.handleClick.bind(this)}
       />
     );
   }
