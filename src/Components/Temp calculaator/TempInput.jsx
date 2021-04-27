@@ -1,5 +1,7 @@
-export default function TempInput({ temperature, scale, handleChange }) {
-  const scales = { c: "celcius", f: "farenheit" };
+import React from "react";
+
+export default function TempInput({ temperature, scale, onChange }) {
+  const scales = { c: "celcius", f: "fahrenheit" };
   return (
     <div class="form-group">
       <label for="text">Temperature in {scales[scale]}</label>
@@ -10,7 +12,7 @@ export default function TempInput({ temperature, scale, handleChange }) {
         placeholder="enter temp."
         value={temperature}
         onChange={(event) => {
-          handleChange(event, scale);
+          onChange(event, scale);
         }}
       ></input>
     </div>

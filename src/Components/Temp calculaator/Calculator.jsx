@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { tryConvert, toCelsius, toFahrenheit } from "./convert";
 import TempInput from "./TempInput";
+import BoilerIndicator from "./BoilerIndicator";
 export default class Calculator extends Component {
   state = { temperature: "", scale: "" };
   handleChange = (event, scale) => {
@@ -8,22 +9,23 @@ export default class Calculator extends Component {
   };
   render() {
     const { temperature, scale } = this.state;
-    const celcius =
+    const celsius =
       scale === "f" ? tryConvert(temperature, toCelsius) : temperature;
-    const farenheit =
+    const fahrenheit =
       scale === "c" ? tryConvert(temperature, toFahrenheit) : temperature;
     return (
       <>
         <TempInput
-          temperature={celcius}
+          temperature={celsius}
           scale="c"
-          handleChange={this.handleChange.bind(this)}
+          onChange={this.handleChange}
         />
         <TempInput
-          temperature={farenheit}
+          temperature={fahrenheit}
           scale="f"
-          handleChange={this.handleChange.bind(this)}
+          onChange={this.handleChange}
         />
+        <BoilerIndicator temperature={parseFloat(celsius)} />
       </>
     );
   }

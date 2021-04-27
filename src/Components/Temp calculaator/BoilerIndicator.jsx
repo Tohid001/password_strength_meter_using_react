@@ -1,11 +1,11 @@
 import React from "react";
 
-export default function BoilerIndicator({ temp }) {
+export default function BoilerIndicator({ temperature }) {
   return (
     <p>
-      {Number.isNaN(temp)
+      {Number.isNaN(temperature)
         ? "insert temp."
-        : temp >= 100
+        : temperature >= 100
         ? "water is boiling"
         : "water won't boil"}
     </p>
