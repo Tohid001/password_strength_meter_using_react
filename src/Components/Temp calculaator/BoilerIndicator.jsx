@@ -1,15 +1,13 @@
-import React, { Component } from "react";
+import React from "react";
 
-export default class BoilerIndicator extends Component {
-  render() {
-    return (
-      <p>
-        {Number.isNaN(this.props.temp)
-          ? "insert temp."
-          : this.props.temp >= 100
-          ? "water is boiling"
-          : "water won't boil"}
-      </p>
-    );
-  }
+export default function BoilerIndicator({ temp }) {
+  return (
+    <p>
+      {Number.isNaN(temp)
+        ? "insert temp."
+        : temp >= 100
+        ? "water is boiling"
+        : "water won't boil"}
+    </p>
+  );
 }
