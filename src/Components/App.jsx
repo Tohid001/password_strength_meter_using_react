@@ -1,8 +1,15 @@
-import React, { Component } from "react";
-import Calculator from "./Temp calculaator/Calculator";
+import React from "react";
 
-export default class App extends Component {
-  render() {
-    return <Calculator />;
-  }
+import Counter from "./Counter";
+import ClickCounter from "./ClickCounter";
+
+function App() {
+  return (
+    <Counter
+      render={(count, handleClick) => {
+        <ClickCounter count={count} handleClick={handleClick} />;
+      }}
+    />
+  );
 }
+export default App;
