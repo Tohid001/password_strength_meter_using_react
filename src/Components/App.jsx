@@ -1,15 +1,8 @@
 import React from "react";
 
-import Counter from "./Counter";
 import ClickCounter from "./ClickCounter";
 
 function App() {
-  return (
-    <Counter
-      render={(count, handleClick) => {
-        <ClickCounter count={count} handleClick={handleClick} />;
-      }}
-    />
-  );
+  return <ClickCounter />;
 }
 export default App;

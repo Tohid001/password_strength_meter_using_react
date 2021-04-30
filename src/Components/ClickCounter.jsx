@@ -1,5 +1,12 @@
 import React from "react";
+import Hoc from "./hoc";
 
-export default function ClickCounter({ count, handleClick }) {
-  return <button onClick={handleClick}>clicked {count} times</button>;
-}
+const ClickCounter = ({ counter, handleClick }) => {
+  return (
+    <button type="button" onClick={handleClick}>
+      clicked {counter} times
+    </button>
+  );
+};
+
+export default Hoc(ClickCounter);
