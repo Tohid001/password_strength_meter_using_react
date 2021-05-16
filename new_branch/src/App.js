@@ -1,35 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer } from "react";
+const initialState = 0;
+const reducer = (state, { type, value }) => {
+  switch (type) {
+    case "increment":
+      return state + value;
+    case "decrement":
+      return state - value;
 
+    default:
+      return state;
+  }
+};
 function App() {
-  const [postId, setPostId] = useState("");
-  const [data, setData] = useState({});
-  const [buttonId, setButtonId] = useState("");
-  const handleClick = () => {
-    setButtonId(postId);
-  };
-  const handleChange = (e) => {
-    setPostId(e.target.value);
-  };
-  useEffect(() => {
-    fetch(`https://jsonplaceholder.typicode.com/posts/${buttonId}`)
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        setData(res);
-      });
-  }, [buttonId]);
+  const [count, dispatch] = useReducer(reducer, initialState);
   return (
-    <div>
-      <ul>
-        <li>
-          <input type="text" value={postId} onChange={handleChange} />
-          <button type="button" onClick={handleClick}>
-            show title
-          </button>
-        </li>
-        <li>{data.title}</li>
-      </ul>
-    </div>
+    <>
+      <div>{count}</div>
+      <div>
+        <button
+          type="button"
+          onClick={dispatch({ type: "increment", value: 1 })}
+        >
+          increment by 1
+        </button>
+        <button
+          type="button"
+          onClick={dispatch({ type: "decrement", value: 1 })}
+        >
+          decrement by 1
+        </button>
+        <button
+          type="button"
+          onClick={dispatch({ type: "increment", value: 1 })}
+        >
+          increment by 1
+        </button>
+        <button
+          type="button"
+          onClick={dispatch({ type: "decrement", value: 1 })}
+        >
+          decrement by 1
+        </button>
+      </div>
+    </>
   );
 }
 
