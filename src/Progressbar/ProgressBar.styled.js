@@ -7,7 +7,7 @@ export const StyledBox = styled.div`
   & div {
     position: absolute;
     color: ${({ strength }) => (strength === 100 ? "green" : "#fff")};
-    font-size: 3rem;
+    font-size: ${({ strength }) => (strength === 100 ? "1.2rem" : "3rem")};
     left: 0;
     top: 0;
     right: 0;

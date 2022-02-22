@@ -1,10 +1,11 @@
 export const calculatePasswordStrength = (password) => {
   const weaknesses = [];
-  weaknesses.push(lengthWeakness(password));
+
   weaknesses.push(lowercaseWeakness(password));
   weaknesses.push(uppercaseWeakness(password));
   weaknesses.push(numberWeakness(password));
   weaknesses.push(specialCharactersWeakness(password));
+  weaknesses.push(lengthWeakness(password));
   weaknesses.push(repeatCharactersWeakness(password));
   return weaknesses.filter((element) => element);
 };

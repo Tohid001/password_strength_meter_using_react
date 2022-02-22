@@ -7,7 +7,7 @@ function ProgressBar({ strength }) {
     <StyledBox strength={strength}>
       <div>
         {strength === 100 ? (
-          <span>&#10004;</span>
+          <span>Very Strong</span>
         ) : (
           <span>{`${strength}%`}</span>
         )}

@@ -39,9 +39,7 @@ function App() {
             gap: "2rem",
           }}
         >
-          <StyledHeader>
-            &lt;Pass<span>***</span>word strength meter/&gt;
-          </StyledHeader>
+          <StyledHeader>&lt;Password strength meter/&gt;</StyledHeader>
           <ProgressBarr strength={strength} />
           <StyledInputBox isFocus={isFocus}>
             <input

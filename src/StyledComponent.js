@@ -63,12 +63,12 @@ export const StyledInputBox = styled.div`
     padding: 1em;
     font-size: 1rem;
     border-radius: 1.5em;
-    background: #ccc8c8;
+    background: #d4cfcf;
     transition: all 200ms linear;
     &:focus {
       /* border: 1px solid lightgoldenrodyellow; */
       outline: none;
-      background: #e3e1e1;
+      background: #f0eded;
     }
   }
 `;
