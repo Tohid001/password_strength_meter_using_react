@@ -81,5 +81,5 @@ export const StyledCausesModal = styled.ul`
   background: black;
   /* box-shadow: 0 10px 10px #2e2323, 0 15px 12px #2e2323; */
   box-shadow: 0 10px 20px #362f2f, 0 6px 6px #362f2f;
-  color: #805012;
+  color: rgba(255, 0, 0, 0.85);
 `;

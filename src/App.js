@@ -12,10 +12,6 @@ function App() {
   const [isFocus, setFocus] = useState(false);
   const [state, setState] = useStrength();
   const { value, strength, weaknesses } = state;
-  console.log("password", value);
-  console.log("strength", strength);
-  console.log("weaknesses", weaknesses);
-  console.log("focus", isFocus);
 
   return (
     <>
